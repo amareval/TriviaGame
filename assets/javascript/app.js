@@ -185,7 +185,7 @@ function decrement() {
           for (var i = 0; i < questions.length; i++) {
 
             
-            $(".multiple").html(questions[0].answers[i].answer);
+            $(".Answer" + [i]).html(questions[0].answers[i].answer);
 
 
               console.log(questions[0].answers[i].answer);
