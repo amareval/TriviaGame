@@ -33,7 +33,7 @@ var questions = [
     },
     {
         text: 'King Kong aint got shit on me!',  
-        answers2: [
+        answers: [
             {
             answer: 'Friday',
             correct: false
@@ -54,7 +54,7 @@ var questions = [
     },
     {
         text: 'Are you not entertained!',  
-        answers3: [
+        answers: [
             {
             answer: 'Transformers',
             correct: false
@@ -79,7 +79,7 @@ var questions = [
     },
     {
         text: 'My Precious',
-        answers4: [
+        answers: [
             {
             answer: 'Lord of the Rings',
             correct: true
@@ -100,12 +100,12 @@ var questions = [
     }
 ]
 
-console.log(questions)
-console.log(questions[0].text)
-console.log(questions[1].text)
-console.log(questions[0].answers[0])
-console.log(questions[0].answers[1].answer)
-console.log(questions.length)
+// console.log(questions)
+// console.log(questions[0].text)
+// console.log(questions[1].text)
+// console.log(questions[0].answers[0])
+// console.log(questions[0].answers[1].answer)
+// console.log(questions.length)
 
 
 
@@ -147,6 +147,7 @@ function decrement() {
     $("#show-timer").html("<h2>" + timer + "</h2>");
     
     if (timer === 0) {
+        
 
         //  ...run the stop function.
         stop();
@@ -160,6 +161,81 @@ function decrement() {
 
     };
 
+
+    $('.Answer0').on('click', function() {
+        if ((questions[0].answers[0].correct) === true) {
+            console.log("correct")
+            $('#replaceImage').replaceWith( "<h2 class= 'text-center btn-light replaceImage'> Correct! </h2> " );
+            $('.replaceImage').append("<div><iframe src='https://giphy.com/embed/iEvCfUnribre8' width='100%' height='100%' style= frameBorder='0' class='giphy-embed' allowFullScreen></iframe></div><p><a href='https://giphy.com/gifs/night-hi-joker-iEvCfUnribre8'></a></p></div>");
+            //  ...run the stop function.
+            stop();
+            //  Alert the user that time is up.
+            // alert("Time Up!");
+            timer = 31;
+            reset()
+
+        }
+        else{
+            $('#replaceImage').replaceWith( "<h2 class= 'text-center btn-light replaceImage'> Incorrect! </h2> " );
+            //Need to add the gif for when its wrong and the second choice is true.
+            $('.replaceImage').append("<div><iframe src='https://giphy.com/embed/iEvCfUnribre8' width='100%' height='100%' style= frameBorder='0' class='giphy-embed' allowFullScreen></iframe></div><p><a href='https://giphy.com/gifs/night-hi-joker-iEvCfUnribre8'></a></p></div>");
+        }
+    });
+
+    $('.Answer1').on('click', function(){
+        if ((questions[0].answers[1].correct) === true) {
+            console.log("correct")
+            $('#replaceImage').replaceWith( "<h2 class= 'text-center btn-light'> Correct! </h2>" );
+
+        }
+        else {
+            console.log('meow')
+        }
+    });
+    $('.Answer2').on('click', function(){
+        if ((questions[0].answers[2].correct) === true) {
+            console.log("correct")
+            $('#replaceImage').replaceWith( "<h2 class= 'text-center btn-light'> Correct! </h2>" );
+
+        }
+        else{
+            console.log('meow')
+        }
+    });
+    $('.Answer3').on('click', function(){
+        if ((questions[0].answers[3].correct) === true) {
+            console.log("correct")
+            $('#replaceImage').replaceWith( "<h2 class= 'text-center btn-light'> Correct! </h2>" );
+
+        } 
+        else{
+            console.log('meow')
+        }
+    });        
+
+   
+     // If the choice is correct or incorrect we take the following actions. 
+     //How do we define a button as a variable with the value of true
+//      for (var i = 0; i < 4; i++) {
+// $('.Answer'+ [i]).on('click',function(){
+
+//     //Set each choice as a variable and define if it is correct or not. These values return true or false
+//     var choice = [questions[0].answers[0].correct, questions[0].answers[1].correct, questions[0].answers[2].correct , questions[0].answers[3].correct]
+
+//     for (var k = 0; k < 4; k++) {
+    
+//     if ((questions[0].answers[k].correct) === true ){
+//         console.log('correct!')
+//         break;
+
+//     }
+//     else{
+//         console.log('incorrect')
+//     }
+// }
+// })
+// };
+
     //  The stop function
     function stop() {
 
@@ -171,13 +247,16 @@ function decrement() {
 
       //Create a function to wait 5 seconds and reset the timer and runs the decerement function again
       function reset (){
+
           setTimeout(function() { decrement();run();setup() }, 5000);
           setTimeout();
           run();
 
       };
+      
 
-      //Setting up the set up for the questions and answers to be chosen.
+      //Setting up the set up for the questions and answers to be chosen. 
+      //Also need to figure out how to loop through questions.
       function setup() {
 
           $(".Question").html(questions[0].text)
@@ -192,10 +271,19 @@ function decrement() {
           }
           
         
+// //When we answer the question correctly, this sets back all the divs and classes for the rest of the function.
+// $('.replaceImage').replaceWith("<div id = 'replaceImage'> <h3 class ='Question btn-light text-center'>QUESTION!</h3><div class='Answer0 btn-light multiple text-center'> answer 1</div><br><div class='Answer1 btn-light multiple text-center'>answer 2</div><br><div class='Answer2 btn-light multiple text-center'>answer 3</div><br><div class='Answer3 btn-light multiple text-center'>answer 4</div><br></div>")
+
+//Primary problems
+//#1: wrong answer does not generate the incorrect message
+//#2: how do you reset the divs and everything that needs to be recalled
+//#3: how do you loop through questions effectively
+//#4: When my timer runs out and it tries to reset I get the error message in console. What does this mean?
+//#5: Find every place with questions[0] and find a way to loop on correct answer (can possibly have a success variable)
+
 
       }
 
-      //Create a function that provides the questions and answers
 
     decrement()
 
@@ -206,13 +294,3 @@ function decrement() {
 
 
 
-
-//If the answer is correct, show the gif and say correct
-
-//if the answer is incorrect, show the gif and say incorrect
-
-//If the timer hits 0 then show "out of time", show gif
-
-//Once all the above run, then restart automatically after 5 seconds
-
-//Add the next question, add the next multiple choice set
